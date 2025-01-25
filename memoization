@@ -1,0 +1,19 @@
+function multiply(x, y) {
+  return x * y;
+}
+
+const cache = {};
+
+function memoizedMultiply(x, y) {
+  const cacheKey = `${x}:${y}`;
+  if (cache[cacheKey] !== undefined) {
+    return cache[cacheKey];
+  }
+
+  const result = multiply(x, y);
+  cache[cacheKey] = result;
+  return result;
+}
+
+console.log(memoizedMultiply(2, 3)); // "6" (calculated)
+console.log(memoizedMultiply(2, 3)); // "6" (cached)
